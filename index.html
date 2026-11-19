@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Xim_Xim</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- Fondo naranja de afuera -->
+<div class="fondo">
+
+  <!-- Caja oscura principal -->
+  <div class="caja">
+
+    <!-- MENU IZQUIERDO -->
+    <div class="menu" id="menu-lateral">
+      <h2>Music Xim_Xim</h2>
+      <p>Principal</p>
+      <a href="#">Inicio</a>
+      <a href="#radio">Radio</a>
+
+      <p>Biblioteca</p>
+      <!-- Menu desplegable -->
+      <div class="desplegable">
+        <a href="#artistas" class="boton-rojo">Artistas ▼</a>
+        <div class="sub-menu">
+          <a href="#artista1">Álvaro Díaz</a>
+          <a href="#artista2">Josean Log</a>
+          <a href="#artista3">Kevin Kaarl</a>
+          <a href="#artista4">Siddartha</a>
+          <a href="#artista5">Zoé</a>
+        </div>
+      </div>
+      <a href="#discos">Álbumes</a>
+      <a href="#canciones">Canciones</a>
+      <a href="formulario.html">Suscripciòn </a>
+      <div class="premium">
+        <h4>¡Obtén premium ahora!</h4>
+        <button>Mejorar plan ahora</button>
+      </div>
+    </div>
+
+    <!-- PARTE DEL CENTRO -->
+    <div class="centro">
+
+      <!-- Banner grande del artista -->
+      <div class="banner">
+        <h1>Siddartha</h1>
+        <p>3.3 M oyentes mensuales</p>
+        <img src="album/album7.jpeg" width="190">
+      </div>
+
+      <!-- Tabla de canciones populares -->
+      <h3>Popular</h3>
+      <table border="1">
+        <tr><th>#</th><th>Nombre</th><th>Album</th><th>Tiempo</th></tr>
+        <tr><td>1</td><td>00:00</td><td>00.00</td><td>3:35</td></tr>
+        <tr><td>2</td><td>Brújula</td><td>00:00</td><td>4:12</td></tr>
+        <tr><td>3</td><td>Únicos</td><td>Únicos</td><td>4:12</td></tr>
+        <tr><td>4</td><td>Ser Parte</td><td>Únicos</td><td>4:17</td></tr>
+        <tr><td>5</td><td>Paraíso lunar</td><td>00:00</td><td>3:44</td></tr>
+      </table>
+
+      <!-- 5 IMAGENES / DISCOS -->
+      <h3 id="discos">Álbumes</h3>
+      <img src="album/album1.jpeg" width="150">
+      <img src="album/album2.jpeg" width="150">
+      <img src="album/album3.jpeg" width="150">
+      <img src="album/album4.jpeg" width="150">
+      <img src="album/album5.jpeg" width="150">
+
+      <!-- 5 ARTISTAS -->
+      <h3 id="artistas">Artistas</h3>
+      <div class="tarjeta" id="artista1">
+        <img src="artistas/artista1.jpeg" width="150">
+        <h4>Álvaro Díaz</h4>
+        <p>Álvaro Díaz es un cantante y compositor puertoriqueño que destaca por su estilo de mùsica urbana, mezclando gèneros como el reguetòn, trap, y pop alternativo.Sus canciones se caracterizan por tener sonidos diferentes, letras creativas,y una esencia moderna.Su mùsica transmite distintas emociones y conecta con quienes disfrutan de ritmos frescos y originales.</p>
+      </div>
+      <div class="tarjeta" id="artista2"> 
+        <img src="artistas/artista2.jpeg" width="150">
+        <h4>Josean Log</h4>
+        <p>Josean Log es un cantante y compositor mexicana que se caracteriza por su estilo musical alternativo, combinando gèneros el indie pop, folk y pop latino sus canciones destacan por sus melodìas tranquilas, letras poèticas y sonidos relajados que transmiten emociones y cuentan historias sobre el amor, la nostalgia y la vida.Su mùsica tiene una esencia fresca, ìntima y muy personal.</p>
+      </div>
+      <div class="tarjeta" id="artista3">
+        <img src="artistas/artista3.jpeg" width="150">
+        <h4>Kevin Kaarl</h4>
+        <p>Kevin Kaarl es un cantante y compositor mexicano originario de Chihuahua, conocido por su estilo indie folk y sus melodías acústicas. Su música se caracteriza por tener letras poéticas y profundas que hablan del amor, el desamor, la nostalgia y los sentimientos. Sus canciones tienen un sonido tranquilo y melancólico que logra transmitir emociones y conectar con quienes disfrutan de la música romántica y alternativa.</p>
+      </div>
+      <div class="tarjeta" id="artista4">
+        <img src="artistas/artista4.jpeg" width="150">
+        <h4>Siddartha</h4>
+        <p>Siddhartha es un cantante, compositor y músico mexicano que destaca por su estilo de rock alternativo e indie pop. Su música se caracteriza por melodías envolventes, sonidos atmosféricos y letras profundas que hablan del amor, la vida, los sentimientos y la nostalgia. Sus canciones tienen una esencia tranquila, poética y emocional que logra conectar con quienes disfrutan de la música alternativa.</p>
+      </div>
+      <div class="tarjeta" id="artista5">
+        <img src="artistas/artista5.jpeg" width="150">
+        <h4>Zoé</h4>
+        <p>Zoé es una banda mexicana de rock alternativo que se distingue por combinar sonidos de rock psicodélico, indie y música electrónica. Sus canciones se caracterizan por melodías envolventes, letras poéticas y un estilo muy particular que habla del amor, los sueños, la nostalgia y las emociones. Su música crea una atmósfera única, misteriosa y profunda que conecta con quienes disfrutan de los sonidos alternativos.</p>
+      </div>
+
+      <!-- 5 AUDIOS -->
+      <h3 id="canciones">Canciones</h3>
+      <p>PA KE</p>
+      <p>Álvaro Díaz</p>
+      <audio controls src="audios/pake.mpeg.mpeg"></audio>
+      <p>Chachachá</p>
+      <p>Josean Log</p>
+      <audio controls src="audios/chachacha.mp4.mp4"></audio>
+      <p>Peregrinos</p>
+      <p>Kevin Kaarl</p>
+      <audio controls src="audios/peregrinos.mpeg.mpeg"></audio>
+      <p>Me Hace Falta</p>
+      <p>Siddartha</p>
+      <audio controls src="audios/falta.mp4.mp4"></audio>
+      <p>Luna</p>
+      <p>Zoé</p>
+      <audio controls src="audios/luna.mp4.mp4"></audio>
+
+      <!-- 5 VIDEOS -->
+      <h3>Videos</h3>
+      <video controls src="videos/video1.mp4" width="200"></video>
+      <video controls src="videos/video2.mp4" width="200"></video>
+      <video controls src="videos/video3.mp4" width="200"></video>
+      <video controls src="videos/video4.mp4" width="200"></video>
+      <video controls src="videos/video5.mp4" width="200"></video>
+
+    </div>
+
+    <!-- PARTE DE LA DERECHA -->
+    <div class="derecha">
+      <img src="album/album6.jpeg" width="190">
+      <h4>Radio Nostalgia</h4>
+      <p>Siddartha</p>
+      <button onclick="comprarAlbum()">$34.92 </button>
+      <ul>
+        <li>Abrázame</li>
+        <li>Pedacito de Mi Corazón</li>
+        <li>Tú y Yo y Tú</li>
+        <li>Si Tú Te Vas</li>
+        <li>Las Notas Fantasmas</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+<section id="radio">
+  <h2>Radio</h2>
+  <p>Recomendaciones para ti</p>
+
+  <div class="radio-grid">
+    <div class="radio-card">
+      <h3>Siddhartha</h3>
+      <p>Similar a Siddhartha</p>
+      <audio controls src="audios/brillas.mpeg"></audio>
+    </div>
+
+    <div class="radio-card">
+      <h3>Zoé</h3>
+      <p>Similar a Zoé</p>
+      <audio controls src="audios/tormentadearena.mpeg"></audio>
+    </div>
+
+    <div class="radio-card">
+      <h3>Kevin Kaarl</h3>
+      <p>Similar a Kevin Kaarl</p>
+      <audio controls src="audios/comounpajaro.mp4"></audio>
+    </div>
+
+    <div class="radio-card">
+      <h3>Álvaro Díaz</h3>
+      <p>Similar a Álvaro Díaz</p>
+      <audio controls src="audios/teestoycorreteando.mp4"></audio>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>Autor: Ximena Peña - Año 2026</p>
+</footer>
+<script>function comprarAlbum(){alert("¡Album comprado con exito! Ya puedes escuchar Radio Nostalgia completo.");}</script>
+</body>
+</html>

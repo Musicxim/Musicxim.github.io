@@ -1,0 +1,339 @@
+/* Fondo de toda la pagina */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+img, video, audio {
+  max-width: 100%;
+}
+
+/* Fondo naranja que rodea todo */
+.fondo {
+  background: linear-gradient(to right, red, orange);
+  padding: 30px;
+  min-height: 100vh;
+}
+
+/* Caja oscura grande -*/
+.caja {
+  background: #141414;
+  border-radius: 20px;
+  display: flex; /* pone todo en 3 columnas */
+  gap: 15px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px;
+}
+
+/* Menu de la izquierda */
+.menu {
+  width: 200px;
+  flex-shrink: 0;
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 15px;
+}
+.menu h2 { margin-top: 0; }
+.menu p { color: #888; font-size: 13px; margin: 15px 0 5px; }
+.menu a {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+  border-radius: 8px;
+}
+.menu a:hover {
+  background: red;
+  color: white;
+}
+.boton-rojo {
+  background: red !important;
+  color: white !important;
+}
+
+/* Para que se oculte el sub-menu */
+.sub-menu {
+  display: none;
+  padding-left: 10px;
+}
+.desplegable:hover .sub-menu {
+  display: block;
+}
+
+.premium {
+  background: #333;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+.premium button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* Parte del centro */
+.centro {
+  flex: 1; /* ocupa todo el espacio del medio */
+  min-width: 0;
+  background: #1f1f1f;
+  padding: 15px;
+  border-radius: 15px;
+}
+.centro input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #333;
+  color: white;
+}
+
+/* Banner rojo/naranja del artista */
+.banner {
+  background: linear-gradient(to right, #ff1a1a, orange);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+.banner img {
+  border-radius: 10px;
+}
+
+/* Tabla - para que no se salga en celular */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+table, th, td {
+  border: 1px solid #444;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Tarjetas de artistas */
+#artistas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.tarjeta {
+  background: #2a2a2a;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0;
+  text-align: center;
+  width: 200px;
+  flex: 0 0 200px;
+}
+.tarjeta img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.tarjeta p {
+  text-align: justify;
+  font-size: 14px;
+}
+  /* Discografía en fila */
+#discos {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#discos img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Audios y videos */
+audio, video {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* Parte derecha */
+.derecha {
+  width: 260px;
+  flex-shrink: 0;
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 15px;
+}
+.derecha img {
+  width: 100%;
+  border-radius: 10px;
+}
+.derecha button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+/* Pie de pagina */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: black;
+  color: #aaa;
+}
+
+#menu-lateral {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background: #12122b;
+  z-index: 999;
+  transform: translateX(-220px);
+  transition: transform 0.3s ease;
+}
+
+#menu-lateral:hover {
+  transform: translateX(0);
+}
+#radio {
+  padding: 30px;
+  background: #12122b;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+#radio h2 {
+  color: white;
+  font-size: 28px;
+}
+
+#radio p {
+  color: #aaa;
+}
+
+.radio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.radio-card {
+  background: #1e1e3a;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.radio-card button {
+  background: #FF4D00;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.tarjeta {
+  background: #1e1e1e;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 600px;
+  color: white;
+}
+
+.tarjeta img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 15px auto;
+  border-radius: 15px;
+}
+
+.tarjeta h4 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.tarjeta p {
+  text-align: left;
+  line-height: 1.8;
+  font-size: 15px;
+  color: #e0e0e0;
+}
+
+/* Para que se vea bien en celular */
+@media (max-width: 900px) {
+  .fondo {
+    padding: 10px;
+  }
+  .caja {
+    flex-direction: column; /* una abajo de otra */
+  }
+  .menu, .derecha, .centro {
+    width: 100%;
+  }
+  #radio {
+    margin: 10px 0;
+    padding: 15px;
+  }
+  /* En celular el hover no sirve, por eso el menú lateral ya no se esconde */
+  #menu-lateral {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tarjeta {
+    width: 100%;
+    margin: 15px 0;
+    padding: 15px;
+  }
+  .tarjeta img {
+    width: 100%;
+    height: auto;
+  }
+  #discos img {
+    width: 48%;
+    height: auto;
+  }
+  .banner {
+    padding: 12px;
+  }
+}

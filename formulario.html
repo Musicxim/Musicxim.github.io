@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro - Music Xim_Xim</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    body { background: #121212; color: #FFFFFF; display: flex; min-height: 100vh; }
+    .menu { width: 250px; background: #000000; padding: 25px 20px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; }
+    .menu h2 { color: #FFFFFF; font-size: 22px; margin-bottom: 15px; }
+    .menu p { color: #B3B3B3; font-size: 12px; font-weight: bold; letter-spacing: 1px; margin: 15px 0 5px; text-transform: uppercase; }
+    .menu a { color: #B3B3B3; text-decoration: none; padding: 10px 12px; border-radius: 8px; font-size: 15px; font-weight: 600; display: block; }
+    .menu a:hover, .menu a.activo { background: #282828; color: #FFFFFF; }
+    .menu a.boton-rojo { color: #000; background: #FFFFFF; }
+    .desplegable .sub-menu { display: none; margin-left: 10px; border-left: 2px solid #282828; padding-left: 10px; margin-top: 5px; }
+    .desplegable.open .sub-menu { display: block; }
+    .desplegable.open .flecha { transform: rotate(180deg); display: inline-block; }
+    .sub-menu a { font-size: 14px; font-weight: 400; padding: 8px 10px; }
+    .premium { margin-top: auto; background: #181818; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #282828; }
+    .premium h4 { font-size: 15px; margin-bottom: 5px; color: #fff; }
+    .premium p { font-size: 12px; color: #B3B3B3; text-transform: none; letter-spacing: 0; margin: 0 0 10px; }
+    .premium button { background: #FFFFFF; color: #000; border: none; padding: 10px; width: 100%; border-radius: 20px; font-weight: bold; cursor: pointer; }
+    .contenido { flex: 1; display: flex; justify-content: center; padding: 20px; background: #121212; }
+    .container { background: #181818; padding: 40px; border-radius: 12px; width: 100%; max-width: 600px; height: fit-content; border: 1px solid #282828; }
+    .container h2 { text-align: center; font-size: 28px; margin-bottom: 24px; color: #fff; }
+    .form-group { margin-bottom: 20px; position: relative; }
+    label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+    input, select { width: 100%; padding: 12px 16px; border: 1.5px solid #535353; border-radius: 8px; font-size: 16px; outline: none; background: #282828; color: #fff; }
+    input::placeholder { color: #B3B3B3; }
+    input:focus, select:focus { border-color: #FFFFFF; box-shadow: 0 0 0 3px rgba(255,255,255,.15); }
+    input.invalid, select.invalid { border-color: #E13300; }
+    input[readonly] { background: #282828; color: #B3B3B3; cursor: not-allowed; }
+    .error-msg { color: #F15E6C; font-size: 13px; margin-top: 6px; display: none; }
+    .error-msg.visible { display: block; }
+    button#btnValidar { width: 100%; padding: 15px; background: #FFFFFF; color: #000; border: none; border-radius: 25px; font-size: 17px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    button#btnValidar:hover { background: #E5E5E5; }
+    .google-fecha { display: flex; gap: 10px; }
+    .google-fecha .campo { flex: 1; }
+    .google-fecha .campo.mes { flex: 1.4; }
+    .google-fecha .campo.dia { flex: 0.8; }
+    .google-fecha .campo.anio { flex: 1; }
+    .google-fecha small { display: block; text-align: center; font-size: 12px; color: #B3B3B3; margin-top: 5px; }
+    .google-ayuda { font-size: 13px; color: #B3B3B3; margin-top: 8px; }
+    .google-ayuda b { color: #fff; cursor: pointer; text-decoration: underline; }
+    .cal-google { display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 50; background: #282828; border: 1px solid #535353; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.5); padding: 14px; margin-top: 8px; color: #fff; }
+    .cal-google.abierto { display: block; }
+    .cal-google-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .cal-google-head b { font-size: 16px; font-weight: 600; text-transform: capitalize; }
+    .cal-google-head button { width: 36px; height: 36px; border: none; background: #181818; color: #fff; border-radius: 50%; font-size: 18px; cursor: pointer; }
+    .cal-google-head button:hover { background: #535353; }
+    .cal-google-semana { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 12px; color: #B3B3B3; font-weight: 600; margin-bottom: 6px; }
+    .cal-google-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cal-google-dia { aspect-ratio: 1; border: none; background: transparent; border-radius: 50%; font-size: 14px; cursor: pointer; color: #fff; }
+    .cal-google-dia:hover { background: #535353; }
+    .cal-google-dia.hoy { border: 1px solid #fff; font-weight: 700; }
+    .cal-google-dia.seleccionado { background: #fff !important; color: #000 !important; font-weight: 700; }
+    .cal-google-dia.futuro { color: #535353; cursor: not-allowed; text-decoration: line-through; }
+    .cal-google-dia.futuro:hover { background: transparent; }
+    .cal-google-pie { display: flex; justify-content: space-between; margin-top: 12px; }
+    .cal-google-pie button { border: none; background: none; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; padding: 8px; text-decoration: underline; }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); justify-content: center; align-items: center; z-index: 100; }
+    .modal.active { display: flex; }
+    .modal-content { background: #181818; padding: 32px; border-radius: 12px; text-align: center; width: 90%; max-width: 400px; color: #fff; border: 1px solid #282828; }
+    .modal-content p { color: #B3B3B3; margin-top: 8px; }
+    .modal-content button { width: 100%; padding: 12px; background: #FFFFFF; color: #000; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 16px; }
+    @media (max-width: 768px){ body{ flex-direction: column; } .menu{ width: 100%; height: auto; position: static; } .contenido{ padding: 10px; } .container{ padding: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <h2>Music Xim_Xim</h2>
+    <p>Principal</p>
+    <a href="index.html">Inicio</a>
+    <a href="index.html">Radio</a>
+    <p>Biblioteca</p>
+    <div class="desplegable" id="desplegable-artistas">
+      <a href="#" class="boton-rojo" id="btnArtistas">Artistas <span class="flecha">▼</span></a>
+      <div class="sub-menu">
+        <a href="index.html">Álvaro Díaz</a>
+        <a href="index.html">Josean Log</a>
+        <a href="index.html">Kevin Kaarl</a>
+        <a href="index.html">Siddhartha</a>
+        <a href="index.html">Zoé</a>
+      </div>
+    </div>
+    <a href="index.html">Álbumes</a>
+    <a href="index.html">Canciones</a>
+    <a href="formulario.html" class="activo">Registro</a>
+    <div class="premium">
+      <h4>¡Obtén premium ahora!</h4>
+      <p>Sin anuncios, música sin límites.</p>
+      <button type="button" id="btnPremium">Mejorar plan ahora</button>
+    </div>
+  </div>
+
+  <div class="contenido">
+    <div class="container">
+      <h2>Suscripción</h2>
+      <form id="userForm" novalidate>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Escribe tu Nombre" autocomplete="off" maxlength="100">
+          <div class="error-msg" id="err-nombre"></div>
+        </div>
+        <div class="form-group">
+          <label for="paterno">Apellido Paterno</label>
+          <input type="text" id="paterno" placeholder="Escribe tu Apellido Paterno" autocomplete="off" maxlength="100">
+          <div class="error-msg" id="err-paterno"></div>
+        </div>
+        <div class="form-group">
+          <label for="materno">Apellido Materno</label>
+          <input type="text" id="materno" placeholder="Escribe tu Apellido Materno" autocomplete="off" maxlength="100">
+          <div class="error-msg" id="err-materno"></div>
+        </div>
+
+        <div class="form-group" id="grupoFecha">
+          <label>Fecha de nacimiento</label>
+          <div class="google-fecha">
+            <div class="campo mes">
+              <select id="mes">
+                <option value="">Mes</option>
+                <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+                <option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+                <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+                <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+              </select>
+              <small>Mes</small>
+            </div>
+            <div class="campo dia">
+              <input type="text" id="dia" placeholder="Día" maxlength="2" inputmode="numeric" autocomplete="off">
+              <small>Día</small>
+            </div>
+            <div class="campo anio">
+              <input type="text" id="anio" placeholder="Año" maxlength="4" inputmode="numeric" autocomplete="off">
+              <small>Año (1900 - 2026)</small>
+            </div>
+          </div>
+          <div class="google-ayuda">¿No sabes tu fecha? Toca <b id="abrirCalendario">aquí para abrir el calendario 📅</b></div>
+          <div class="cal-google" id="calGoogle">
+            <div class="cal-google-head">
+              <button type="button" id="btnAnt">‹</button>
+              <b id="tituloCal">Mayo 2005</b>
+              <button type="button" id="btnSig">›</button>
+            </div>
+            <div class="cal-google-semana"><span>D</span><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span></div>
+            <div class="cal-google-grid" id="gridCal"></div>
+            <div class="cal-google-pie">
+              <button type="button" id="btnHoyCal">Hoy</button>
+              <button type="button" id="btnCerrarCal">Cerrar</button>
+            </div>
+          </div>
+          <div class="error-msg" id="err-fecha"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="text" id="edad" placeholder="Se llena sola con tu fecha" readonly>
+          <div class="error-msg" id="err-edad"></div>
+        </div>
+        <div class="form-group">
+          <label for="tarjeta">Número de tarjeta</label>
+          <input type="text" id="tarjeta" placeholder="Escribe tu Número de Tarjeta" maxlength="16" autocomplete="off" inputmode="numeric">
+          <div class="error-msg" id="err-tarjeta"></div>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="text" id="email" placeholder="Escribe tu Email" autocomplete="off">
+          <div class="error-msg" id="err-email"></div>
+        </div>
+        <button type="button" id="btnValidar">Suscríbete</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modalSuccess" class="modal">
+    <div class="modal-content"><div style="font-size:40px;">✓</div><h3>¡Registro completado!</h3><p>Gracias por proporcionarnos tus datos.</p><button type="button" id="btnCerrarModal">Aceptar</button></div>
+  </div>
+  <div id="modalPremium" class="modal">
+    <div class="modal-content"><div style="font-size:40px;">⭐</div><h3>¡Obtén Premium ahora!</h3><p>Con Premium escuchas sin anuncios, puedes descargar tus canciones y saltar las que quieras.<br><br>Completa tu suscripción para activar tu plan Premium.</p><button type="button" id="btnCerrarPremium">Entendido</button></div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btnArtistas = document.getElementById('btnArtistas');
+  const desplegable = document.getElementById('desplegable-artistas');
+  btnArtistas.addEventListener('click', (e) => { e.preventDefault(); desplegable.classList.toggle('open'); });
+  const modalPremium = document.getElementById('modalPremium');
+  document.getElementById('btnPremium').addEventListener('click', () => modalPremium.classList.add('active'));
+  document.getElementById('btnCerrarPremium').addEventListener('click', () => modalPremium.classList.remove('active'));
+
+  const nombre = document.getElementById('nombre');
+  const paterno = document.getElementById('paterno');
+  const materno = document.getElementById('materno');
+  const mes = document.getElementById('mes');
+  const dia = document.getElementById('dia');
+  const anio = document.getElementById('anio');
+  const edadInput = document.getElementById('edad');
+  const tarjeta = document.getElementById('tarjeta');
+  const email = document.getElementById('email');
+  const btnValidar = document.getElementById('btnValidar');
+  const modal = document.getElementById('modalSuccess');
+  const btnCerrar = document.getElementById('btnCerrarModal');
+  const regexTexto = /^[A-ZÁÉÍÓÚÑ\s]+$/;
+
+  // LÍMITES: mínimo 1900, máximo 2026, y NO se aceptan fechas futuras
+  const ANIO_MIN = 1900;
+  const ANIO_MAX = 2026;
+
+  function showError(id, msg){ const el=document.getElementById('err-'+id); const inp=document.getElementById(id); if(inp) inp.classList.add('invalid'); if(el){el.textContent=msg; el.classList.add('visible');} }
+  function clearError(id){ const el=document.getElementById('err-'+id); const inp=document.getElementById(id); if(inp) inp.classList.remove('invalid'); if(el){el.textContent=''; el.classList.remove('visible');} }
+  function showErrorFecha(msg){ document.getElementById('err-fecha').textContent=msg; document.getElementById('err-fecha').classList.add('visible'); anio.classList.add('invalid'); }
+  function clearErrorFecha(){ document.getElementById('err-fecha').textContent=''; document.getElementById('err-fecha').classList.remove('visible'); }
+
+  [nombre,paterno,materno].forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      const pos=inp.selectionStart; inp.value=inp.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ\s]/g,''); inp.setSelectionRange(pos,pos);
+      if(!inp.value) showError(inp.id,'Este campo es obligatorio.');
+      else if(!regexTexto.test(inp.value)) showError(inp.id,'Solo letras en mayúsculas.');
+      else clearError(inp.id);
+    });
+  });
+  tarjeta.addEventListener('input',()=>{
+    tarjeta.value=tarjeta.value.replace(/[^0-9]/g,'');
+    if(!tarjeta.value) showError('tarjeta','Tu tarjeta es obligatoria.');
+    else if(tarjeta.value.length!==16) showError('tarjeta','Debe tener 16 dígitos.');
+    else clearError('tarjeta');
+  });
+  email.addEventListener('input',()=>{
+    if(!email.value) showError('email','Tu Email es obligatorio.');
+    else if(!email.value.includes('@')||!email.value.endsWith('.com')) showError('email',"Debe incluir '@' y terminar en '.com'.");
+    else clearError('email');
+  });
+
+  function validarAnio(){
+    anio.value = anio.value.replace(/[^0-9]/g, '').slice(0,4);
+    if(!anio.value){ anio.classList.remove('invalid'); return null; }
+    let primer = anio.value.charAt(0);
+    if(primer !== '1' && primer !== '2'){
+      anio.value = '';
+      showErrorFecha('Ese año no existe, el año debe empezar con 19 o 20.');
+      edadInput.value=''; return false;
+    }
+    if(anio.value.length >= 2){
+      let dos = anio.value.slice(0,2);
+      if(dos !== '19' && dos !== '20'){
+        anio.value = '';
+        showErrorFecha('Ese año no existe. Solo se acepta 19xx o 20xx. Ejemplo: 1998, 2005.');
+        edadInput.value=''; return false;
+      }
+    }
+    if(anio.value.length === 4){
+      let a = parseInt(anio.value, 10);
+      if(a < ANIO_MIN){
+        showErrorFecha('Ese año no es válido. El mínimo es 1990.');
+        edadInput.value=''; return false;
+      }
+      if(a > ANIO_MAX){
+        showErrorFecha('Ese año no es válido, el máximo es 2026.');
+        edadInput.value=''; return false;
+      }
+      anio.classList.remove('invalid');
+      clearErrorFecha();
+      return true;
+    }
+    return null;
+  }
+
+  function validarDia(){
+    dia.value = dia.value.replace(/[^0-9]/g, '').slice(0,2);
+    if(!dia.value) return null;
+    let d = parseInt(dia.value, 10);
+    if(d < 1 || d > 31){ showErrorFecha('El día debe ser del 1 al 31.'); return false; }
+    return true;
+  }
+
+  function esFechaFutura(d, m, a){
+    let hoy = new Date(); hoy.setHours(0,0,0,0);
+    let fecha = new Date(a, m-1, d); fecha.setHours(0,0,0,0);
+    return fecha > hoy;
+  }
+
+  function calcularEdad(){
+    validarDia();
+    let resAnio = validarAnio();
+    if(resAnio === false) return null;
+    let d=parseInt(dia.value), m=parseInt(mes.value), a=parseInt(anio.value);
+    if(!d || !m || !a || anio.value.length<4){ edadInput.value=''; return null; }
+    let diasMes = new Date(a, m, 0).getDate();
+    if(d > diasMes){
+      showErrorFecha('Esa fecha no existe. ' + ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][m] + ' solo tiene ' + diasMes + ' días.');
+      edadInput.value=''; return null;
+    }
+    // NO validar fechas futuras
+    if(esFechaFutura(d, m, a)){
+      showErrorFecha('No puedes poner una fecha del futuro. Esa fecha todavía no ha pasado.');
+      edadInput.value=''; return null;
+    }
+    let hoy=new Date(); let edad=hoy.getFullYear()-a;
+    if(hoy.getMonth()+1 < m || (hoy.getMonth()+1===m && hoy.getDate()<d)) edad--;
+    edadInput.value=edad;
+    if(edad<18){
+      showErrorFecha('Debes ser mayor de 18 años.');
+      document.getElementById('err-edad').textContent='Debes ser mayor de 18 años.'; document.getElementById('err-edad').classList.add('visible');
+    } else {
+      clearErrorFecha(); anio.classList.remove('invalid'); dia.classList.remove('invalid');
+      document.getElementById('err-edad').textContent=''; document.getElementById('err-edad').classList.remove('visible');
+    }
+    return edad;
+  }
+
+  const mesesNombres = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const cal = document.getElementById('calGoogle');
+  const tituloCal = document.getElementById('tituloCal');
+  const gridCal = document.getElementById('gridCal');
+  let vistaMes = 4, vistaAnio = 2005;
+
+  function dibujarCal(){
+    tituloCal.textContent = mesesNombres[vistaMes] + ' ' + vistaAnio;
+    gridCal.innerHTML='';
+    let primer = new Date(vistaAnio, vistaMes, 1).getDay();
+    let total = new Date(vistaAnio, vistaMes+1, 0).getDate();
+    let hoy=new Date();
+    for(let i=0;i<primer;i++){ gridCal.appendChild(document.createElement('div')); }
+    for(let d=1; d<=total; d++){
+      let b=document.createElement('button'); b.type='button'; b.className='cal-google-dia'; b.textContent=d;
+      if(d===hoy.getDate() && vistaMes===hoy.getMonth() && vistaAnio===hoy.getFullYear()) b.classList.add('hoy');
+      if(parseInt(dia.value)===d && parseInt(mes.value)===vistaMes+1 && parseInt(anio.value)===vistaAnio) b.classList.add('seleccionado');
+      // Días futuros tachados, no se pueden tocar
+      if(esFechaFutura(d, vistaMes+1, vistaAnio)){
+        b.classList.add('futuro'); b.disabled = true;
+      } else {
+        b.addEventListener('click',()=>{ dia.value=d; mes.value=vistaMes+1; anio.value=vistaAnio; calcularEdad(); dibujarCal(); });
+      }
+      gridCal.appendChild(b);
+    }
+  }
+
+  document.getElementById('abrirCalendario').addEventListener('click',()=>{ cal.classList.toggle('abierto'); dibujarCal(); });
+  dia.addEventListener('click',()=>{ cal.classList.add('abierto'); dibujarCal(); });
+  mes.addEventListener('change',()=>{ if(mes.value){ vistaMes=parseInt(mes.value)-1; } if(anio.value && anio.value.length===4){ vistaAnio=parseInt(anio.value); } calcularEdad(); dibujarCal(); });
+  dia.addEventListener('input',()=>{ calcularEdad(); dibujarCal(); });
+  anio.addEventListener('input',()=>{ 
+    let r = validarAnio();
+    if(r === true && anio.value.length===4){ vistaAnio=parseInt(anio.value); }
+    calcularEdad(); dibujarCal();
+  });
+  anio.addEventListener('paste', (e)=>{ setTimeout(()=>{ validarAnio(); calcularEdad(); }, 0); });
+  document.getElementById('btnAnt').addEventListener('click',()=>{ vistaMes--; if(vistaMes<0){vistaMes=11; vistaAnio--;} if(vistaAnio < ANIO_MIN) vistaAnio = ANIO_MIN; dibujarCal(); });
+  document.getElementById('btnSig').addEventListener('click',()=>{ vistaMes++; if(vistaMes>11){vistaMes=0; vistaAnio++;} if(vistaAnio > ANIO_MAX) vistaAnio = ANIO_MAX; dibujarCal(); });
+  document.getElementById('btnHoyCal').addEventListener('click',()=>{ let h=new Date(); vistaMes=h.getMonth(); vistaAnio=h.getFullYear(); dibujarCal(); });
+  document.getElementById('btnCerrarCal').addEventListener('click',()=> cal.classList.remove('abierto'));
+
+  btnValidar.addEventListener('click',()=>{
+    let ok=true;
+    [nombre,paterno,materno].forEach(inp=>{ if(!inp.value){ showError(inp.id,'Este campo es obligatorio.'); ok=false; } });
+    if(!tarjeta.value||tarjeta.value.length!==16){ showError('tarjeta','Debe tener 16 dígitos.'); ok=false; }
+    if(!email.value||!email.value.includes('@')||!email.value.endsWith('.com')){ showError('email',"Debe incluir '@' y terminar en '.com'."); ok=false; }
+    if(!mes.value || !dia.value || !anio.value){ showErrorFecha('Escribe tu fecha completa: Mes, Día y Año.'); ok=false; }
+    else if(anio.value.length < 4){ showErrorFecha('El año debe tener 4 números. Ejemplo: 2005'); ok=false; }
+    else if(validarAnio() === false){ ok=false; }
+    else {
+      let d=parseInt(dia.value), m=parseInt(mes.value), a=parseInt(anio.value);
+      if(esFechaFutura(d,m,a)){ showErrorFecha('No puedes poner una fecha del futuro.'); ok=false; }
+      else {
+        let edad=calcularEdad();
+        if(edad===null||edad<18){ showErrorFecha('Debes ser mayor de 18 años.'); ok=false; }
+      }
+    }
+    if(ok){ cal.classList.remove('abierto'); modal.classList.add('active'); }
+  });
+  btnCerrar.addEventListener('click',()=>{ modal.classList.remove('active'); window.location.href="index.html"; });
+});
+</script>
+</body>
+</html>
