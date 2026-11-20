@@ -220,8 +220,6 @@ footer {
 }
 
 #menu-lateral:hover {
-  transform: translateX(0);
-}
 #menu-lateral.abierto {
   transform: translateX(0);
 #radio {
