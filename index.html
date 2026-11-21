@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-<button id="btn-menu" onclick="document.getElementById('menu-lateral').classList.toggle('abierto')">☰</button>
+<button id="btn-menu">☰</button>
+<div id="fondo-oscuro"></div>
 
 <div class="fondo">
   <div class="caja">
@@ -18,8 +19,8 @@
       <a href="#radio">Radio</a>
       <p>Biblioteca</p>
       <div class="desplegable">
-        <a href="#Artistas" class="boton-rojo" onclick="document.querySelector('.sub-menu').classList.toggle('mostrar'); return false;">Artistas ▼</a>
-        <div class="sub-menu">
+        <a href="#artistas" class="boton-rojo" id="btn-artistas">Artistas ▼</a>
+        <div class="sub-menu" id="sub-artistas">
           <a href="#artista1">Álvaro Díaz</a>
           <a href="#artista2">Josean Log</a>
           <a href="#artista3">Kevin Kaarl</a>
@@ -88,20 +89,15 @@
       </div>
 
       <h3 id="canciones">Canciones</h3>
-      <p>PA KE</p>
-      <p>Álvaro Díaz</p>
+      <p>PA KE</p><p>Álvaro Díaz</p>
       <audio controls src="Audios/pake.mpeg.mpeg"></audio>
-      <p>Chachachá</p>
-      <p>Josean Log</p>
+      <p>Chachachá</p><p>Josean Log</p>
       <audio controls src="Audios/chachacha.mp4.mp4"></audio>
-      <p>Peregrinos</p>
-      <p>Kevin Kaarl</p>
+      <p>Peregrinos</p><p>Kevin Kaarl</p>
       <audio controls src="Audios/peregrinos.mpeg.mpeg"></audio>
-      <p>Me Hace Falta</p>
-      <p>Siddartha</p>
+      <p>Me Hace Falta</p><p>Siddartha</p>
       <audio controls src="Audios/falta.mp4.mp4"></audio>
-      <p>Luna</p>
-      <p>Zoé</p>
+      <p>Luna</p><p>Zoé</p>
       <audio controls src="Audios/luna.mp4.mp4"></audio>
 
       <h3>Videos</h3>
@@ -132,31 +128,45 @@
   <h2>Radio</h2>
   <p>Recomendaciones para ti</p>
   <div class="radio-grid">
-    <div class="radio-card">
-      <h3>Siddhartha</h3>
-      <p>Similar a Siddhartha</p>
-      <audio controls src="Audios/brillas.mpeg"></audio>
-    </div>
-    <div class="radio-card">
-      <h3>Zoé</h3>
-      <p>Similar a Zoé</p>
-      <audio controls src="Audios/tormentadearena.mpeg"></audio>
-    </div>
-    <div class="radio-card">
-      <h3>Kevin Kaarl</h3>
-      <p>Similar a Kevin Kaarl</p>
-      <audio controls src="Audios/comounpajaro.mp4"></audio>
-    </div>
-    <div class="radio-card">
-      <h3>Álvaro Díaz</h3>
-      <p>Similar a Álvaro Díaz</p>
-      <audio controls src="Audios/teestoycorreteando.mp4"></audio>
-    </div>
+    <div class="radio-card"><h3>Siddhartha</h3><p>Similar a Siddhartha</p><audio controls src="Audios/brillas.mpeg"></audio></div>
+    <div class="radio-card"><h3>Zoé</h3><p>Similar a Zoé</p><audio controls src="Audios/tormentadearena.mpeg"></audio></div>
+    <div class="radio-card"><h3>Kevin Kaarl</h3><p>Similar a Kevin Kaarl</p><audio controls src="Audios/comounpajaro.mp4"></audio></div>
+    <div class="radio-card"><h3>Álvaro Díaz</h3><p>Similar a Álvaro Díaz</p><audio controls src="Audios/teestoycorreteando.mp4"></audio></div>
   </div>
 </section>
-<footer>
-  <p>Autor: Ximena Peña - Año 2026</p>
-</footer>
-<script>function comprarAlbum(){alert("¡Album comprado con exito! Ya puedes escuchar Radio Nostalgia completo.");}</script>
+<footer><p>Autor: Ximena Peña - Año 2026</p></footer>
+
+<script>
+function comprarAlbum(){alert("¡Album comprado con exito! Ya puedes escuchar Radio Nostalgia completo.");}
+
+// ESTO ES LO QUE ARREGLA EL MENU - NO LO BORRES
+var btn = document.getElementById('btn-menu');
+var menu = document.getElementById('menu-lateral');
+var fondoOscuro = document.getElementById('fondo-oscuro');
+
+function abrirCerrarMenu(){
+  menu.classList.toggle('abierto');
+  fondoOscuro.classList.toggle('mostrar');
+}
+btn.addEventListener('click', abrirCerrarMenu);
+fondoOscuro.addEventListener('click', abrirCerrarMenu);
+
+// Cuando le das a un link del menu, se cierra solito
+var links = menu.querySelectorAll('a');
+for(var i=0; i<links.length; i++){
+  links[i].addEventListener('click', function(){
+    if(window.innerWidth <= 900){
+      menu.classList.remove('abierto');
+      fondoOscuro.classList.remove('mostrar');
+    }
+  });
+}
+
+// Sub-menu de Artistas
+document.getElementById('btn-artistas').addEventListener('click', function(e){
+  e.preventDefault();
+  document.getElementById('sub-artistas').classList.toggle('mostrar');
+});
+</script>
 </body>
 </html>
