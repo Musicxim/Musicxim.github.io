@@ -2,10 +2,39 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Xim_Xim</title>
     <link rel="stylesheet" href="estilos.css">
+<style>
+  *{box-sizing:border-box !important;}
+  html,body{overflow-x:hidden !important;width:100% !important;max-width:100% !important;margin:0 !important;padding:0 !important;}
+  .fondo{width:100% !important;max-width:100% !important;overflow-x:hidden !important;}
+  .caja{display:flex !important;flex-wrap:wrap !important;width:100% !important;max-width:100% !important;}
+  .centro{width:100% !important;max-width:100% !important;flex:1 !important;min-width:0 !important;padding:12px !important;}
+  .derecha{width:100% !important;max-width:100% !important;padding:12px !important;}
+  table{width:100% !important;max-width:100% !important;display:block !important;overflow-x:auto !important;font-size:13px !important;}
+  img,video{max-width:100% !important;height:auto !important;}
+  audio{width:100% !important;max-width:100% !important;display:block !important;margin:8px 0 16px 0 !important;}
+  #radio{width:100% !important;max-width:100% !important;padding:12px !important;}
+  .radio-grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important;width:100% !important;}
+  .radio-card{width:100% !important;max-width:100% !important;min-width:0 !important;padding:12px !important;}
+  .tarjeta{width:100% !important;max-width:100% !important;}
+  /* MENU */
+  #btn-menu{position:fixed;top:10px;left:10px;z-index:10000;font-size:24px;background:#ff8c00;color:white;border:none;padding:8px 14px;border-radius:10px;cursor:pointer;}
+  .sub-menu{display:none;}
+  .sub-menu.mostrar{display:block;}
+  @media (max-width:768px){
+    .caja{flex-direction:column !important;}
+    #menu-lateral{position:fixed !important;left:-100% !important;top:0 !important;height:100% !important;width:82% !important;max-width:300px !important;z-index:9999 !important;transition:0.3s !important;overflow-y:auto !important;padding-top:60px !important;}
+    #menu-lateral.abierto{left:0 !important;}
+    .centro{padding-top:55px !important;}
+    .radio-grid{grid-template-columns:1fr !important;}
+    .banner img{width:100% !important;max-width:190px !important;}
+  }
+</style>
 </head>
 <body>
+<button id="btn-menu" onclick="document.getElementById('menu-lateral').classList.toggle('abierto')">☰</button>
 
 <!-- Fondo naranja de afuera -->
 <div class="fondo">
@@ -22,7 +51,7 @@
       <p>Biblioteca</p>
       <!-- Menu desplegable -->
       <div class="desplegable">
-        <a href="#Artistas" class="boton-rojo">Artistas ▼</a>
+        <a href="#Artistas" class="boton-rojo" onclick="document.querySelector('.sub-menu').classList.toggle('mostrar'); return false;">Artistas ▼</a>
         <div class="sub-menu">
           <a href="#artista1">Álvaro Díaz</a>
           <a href="#artista2">Josean Log</a>
