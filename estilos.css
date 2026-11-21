@@ -334,3 +334,35 @@ footer {
     padding: 12px;
   }
 }
+/* QUITAR LO QUE SOBRA A LA DERECHA */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* QUE LA TABLA DE POPULAR QUEPA EN EL CELULAR */
+.popular, .tabla-popular, table {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+  display: block;
+}
+
+/* QUE LOS AUDIOS SALGAN COMPLETOS */
+audio {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* QUE EL CONTENIDO NO SE SALGA */
+.contenido, main, .principal {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 10px !important;
+  margin: 0 !important;
+}
