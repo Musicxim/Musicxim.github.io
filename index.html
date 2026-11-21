@@ -5,51 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Xim_Xim</title>
     <link rel="stylesheet" href="estilos.css">
-<style>
-  *{box-sizing:border-box !important;}
-  html,body{overflow-x:hidden !important;width:100% !important;max-width:100% !important;margin:0 !important;padding:0 !important;}
-  .fondo{width:100% !important;max-width:100% !important;overflow-x:hidden !important;}
-  .caja{display:flex !important;flex-wrap:wrap !important;width:100% !important;max-width:100% !important;}
-  .centro{width:100% !important;max-width:100% !important;flex:1 !important;min-width:0 !important;padding:12px !important;}
-  .derecha{width:100% !important;max-width:100% !important;padding:12px !important;}
-  table{width:100% !important;max-width:100% !important;display:block !important;overflow-x:auto !important;font-size:13px !important;}
-  img,video{max-width:100% !important;height:auto !important;}
-  audio{width:100% !important;max-width:100% !important;display:block !important;margin:8px 0 16px 0 !important;}
-  #radio{width:100% !important;max-width:100% !important;padding:12px !important;}
-  .radio-grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important;width:100% !important;}
-  .radio-card{width:100% !important;max-width:100% !important;min-width:0 !important;padding:12px !important;}
-  .tarjeta{width:100% !important;max-width:100% !important;}
-  /* MENU */
-  #btn-menu{position:fixed;top:10px;left:10px;z-index:10000;font-size:24px;background:#ff8c00;color:white;border:none;padding:8px 14px;border-radius:10px;cursor:pointer;}
-  .sub-menu{display:none;}
-  .sub-menu.mostrar{display:block;}
-  @media (max-width:768px){
-    .caja{flex-direction:column !important;}
-    #menu-lateral{position:fixed !important;left:-100% !important;top:0 !important;height:100% !important;width:82% !important;max-width:300px !important;z-index:9999 !important;transition:0.3s !important;overflow-y:auto !important;padding-top:60px !important;}
-    #menu-lateral.abierto{left:0 !important;}
-    .centro{padding-top:55px !important;}
-    .radio-grid{grid-template-columns:1fr !important;}
-    .banner img{width:100% !important;max-width:190px !important;}
-  }
-</style>
 </head>
 <body>
 <button id="btn-menu" onclick="document.getElementById('menu-lateral').classList.toggle('abierto')">☰</button>
 
-<!-- Fondo naranja de afuera -->
 <div class="fondo">
-
-  <!-- Caja oscura principal -->
   <div class="caja">
-    <!-- MENU IZQUIERDO -->
     <div class="menu" id="menu-lateral">
       <h2>Music Xim_Xim</h2>
       <p>Principal</p>
       <a href="#">Inicio</a>
       <a href="#radio">Radio</a>
-
       <p>Biblioteca</p>
-      <!-- Menu desplegable -->
       <div class="desplegable">
         <a href="#Artistas" class="boton-rojo" onclick="document.querySelector('.sub-menu').classList.toggle('mostrar'); return false;">Artistas ▼</a>
         <div class="sub-menu">
@@ -69,17 +36,13 @@
       </div>
     </div>
 
-    <!-- PARTE DEL CENTRO -->
     <div class="centro">
-
-      <!-- Banner grande del artista -->
       <div class="banner">
         <h1>Siddartha</h1>
         <p>3.3 M oyentes mensuales</p>
         <img src="Album/album7.jpeg" width="190">
       </div>
 
-      <!-- Tabla de canciones populares -->
       <h3>Popular</h3>
       <table border="1">
         <tr><th>#</th><th>Nombre</th><th>Album</th><th>Tiempo</th></tr>
@@ -90,7 +53,6 @@
         <tr><td>5</td><td>Paraíso lunar</td><td>00:00</td><td>3:44</td></tr>
       </table>
 
-      <!-- 5 IMAGENES / DISCOS -->
       <h3 id="discos">Álbumes</h3>
       <img src="Album/album1.jpeg" width="150">
       <img src="Album/album2.jpeg" width="150">
@@ -98,7 +60,6 @@
       <img src="Album/album4.jpeg" width="150">
       <img src="Album/album5.jpeg" width="150">
 
-      <!-- 5 ARTISTAS -->
       <h3 id="artistas">Artistas</h3>
       <div class="tarjeta" id="artista1">
         <img src="Artistas/artista1.jpeg" width="150">
@@ -126,35 +87,31 @@
         <p>Zoé es una banda mexicana de rock alternativo que se distingue por combinar sonidos de rock psicodélico, indie y música electrónica. Sus canciones se caracterizan por melodías envolventes, letras poéticas y un estilo muy particular que habla del amor, los sueños, la nostalgia y las emociones. Su música crea una atmósfera única, misteriosa y profunda que conecta con quienes disfrutan de los sonidos alternativos.</p>
       </div>
 
-      <!-- 5 AUDIOS -->
       <h3 id="canciones">Canciones</h3>
       <p>PA KE</p>
       <p>Álvaro Díaz</p>
-      <audio controls style="width:100%" src="Audios/pake.mpeg.mpeg"></audio>
+      <audio controls src="Audios/pake.mpeg.mpeg"></audio>
       <p>Chachachá</p>
       <p>Josean Log</p>
-      <audio controls style="width:100%" src="Audios/chachacha.mp4.mp4"></audio>
+      <audio controls src="Audios/chachacha.mp4.mp4"></audio>
       <p>Peregrinos</p>
       <p>Kevin Kaarl</p>
-      <audio controls style="width:100%" src="Audios/peregrinos.mpeg.mpeg"></audio>
+      <audio controls src="Audios/peregrinos.mpeg.mpeg"></audio>
       <p>Me Hace Falta</p>
       <p>Siddartha</p>
-      <audio controls style="width:100%" src="Audios/falta.mp4.mp4"></audio>
+      <audio controls src="Audios/falta.mp4.mp4"></audio>
       <p>Luna</p>
       <p>Zoé</p>
-      <audio controls style="width:100%" src="Audios/luna.mp4.mp4"></audio>
+      <audio controls src="Audios/luna.mp4.mp4"></audio>
 
-      <!-- 5 VIDEOS -->
       <h3>Videos</h3>
       <video controls src="Videos/video1.mp4" width="200"></video>
       <video controls src="Videos/video2.mp4" width="200"></video>
       <video controls src="Videos/video3.mp4" width="200"></video>
       <video controls src="Videos/video4.mp4" width="200"></video>
       <video controls src="Videos/video5.mp4" width="200"></video>
-
     </div>
 
-    <!-- PARTE DE LA DERECHA -->
     <div class="derecha">
       <img src="Album/album6.jpeg" width="190">
       <h4>Radio Nostalgia</h4>
@@ -168,32 +125,28 @@
         <li>Las Notas Fantasmas</li>
       </ul>
     </div>
-
   </div>
 </div>
+
 <section id="radio">
   <h2>Radio</h2>
   <p>Recomendaciones para ti</p>
-
   <div class="radio-grid">
     <div class="radio-card">
       <h3>Siddhartha</h3>
       <p>Similar a Siddhartha</p>
       <audio controls src="Audios/brillas.mpeg"></audio>
     </div>
-
     <div class="radio-card">
       <h3>Zoé</h3>
       <p>Similar a Zoé</p>
       <audio controls src="Audios/tormentadearena.mpeg"></audio>
     </div>
-
     <div class="radio-card">
       <h3>Kevin Kaarl</h3>
       <p>Similar a Kevin Kaarl</p>
       <audio controls src="Audios/comounpajaro.mp4"></audio>
     </div>
-
     <div class="radio-card">
       <h3>Álvaro Díaz</h3>
       <p>Similar a Álvaro Díaz</p>
