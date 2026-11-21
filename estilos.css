@@ -1,363 +1,55 @@
-/* Fondo de toda la pagina */
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family: Arial;
-  background: black;
-  color: white;
-  overflow-x: hidden;
-}
-img, video, audio {
-  max-width: 100%;
-}
+* { box-sizing: border-box; }
+html, body { overflow-x: hidden; width: 100%; max-width: 100%; margin: 0; padding: 0; font-family: Arial, sans-serif; background: #ff8c00; color: white; }
+img, video { max-width: 100%; height: auto; }
+audio { width: 100%; max-width: 100%; display: block; margin: 8px 0 16px 0; }
 
-/* Fondo naranja que rodea todo */
-.fondo {
-  background: linear-gradient(to right, red, orange);
-  padding: 30px;
-  min-height: 100vh;
-}
+/* FONDO Y CAJA */
+.fondo { width: 100%; max-width: 100%; padding: 10px; overflow-x: hidden; }
+.caja { display: flex; flex-direction: row; flex-wrap: nowrap; width: 100%; max-width: 1200px; margin: auto; background: #1e1e1e; border-radius: 15px; overflow: hidden; align-items: flex-start; }
 
-/* Caja oscura grande */
-.caja {
-  background: #141414;
-  border-radius: 20px;
-  display: flex;
-  gap: 15px;
-  max-width: 1200px;
-  margin: auto;
-  padding: 15px;
-}
+/* MENU */
+.menu { width: 220px; min-width: 220px; background: #222; padding: 15px; }
+.menu h2 { font-size: 18px; }
+.menu a { display: block; color: white; text-decoration: none; padding: 8px 0; }
+.menu a:hover { color: #ff8c00; }
+.boton-rojo { color: #ff5a5a !important; font-weight: bold; }
+.sub-menu { display: none; padding-left: 12px; }
+.sub-menu.mostrar { display: block; }
+.premium { background: #ff8c00; padding: 10px; border-radius: 10px; margin-top: 15px; text-align: center; }
+.premium button { background: white; border: none; padding: 8px 10px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-/* Menu de la izquierda */
-.menu {
-  width: 200px;
-  flex-shrink: 0;
-  background: #1c1c1c;
-  padding: 15px;
-  border-radius: 15px;
-}
-.menu h2 { margin-top: 0; }
-.menu p { color: #888; font-size: 13px; margin: 15px 0 5px; }
-.menu a {
-  color: #ccc;
-  text-decoration: none;
-  display: block;
-  padding: 8px;
-  border-radius: 8px;
-}
-.menu a:hover {
-  background: red;
-  color: white;
-}
-.boton-rojo {
-  background: red !important;
-  color: white !important;
-}
+/* CENTRO */
+.centro { flex: 1; min-width: 0; padding: 15px; }
+.banner { background: #333; padding: 15px; border-radius: 12px; }
+.banner img { border-radius: 10px; }
+table { width: 100%; display: block; overflow-x: auto; border-collapse: collapse; font-size: 13px; }
+table th, table td { padding: 6px; text-align: left; }
+.tarjeta { background: #2a2a2a; padding: 12px; border-radius: 12px; margin: 12px 0; }
 
-/* Sub-menu */
-.sub-menu {
-  display: none;
-  padding-left: 10px;
-}
-.sub-menu.mostrar {
-  display: block;
-}
-.desplegable:hover .sub-menu {
-  display: block;
-}
+/* DERECHA - RADIO NOSTALGIA SIEMPRE A LA DERECHA */
+.derecha { width: 260px; min-width: 260px; max-width: 260px; flex-shrink: 0; background: #2a2a2a; padding: 15px; position: sticky; top: 0; }
+.derecha button { background: #ff8c00; color: white; border: none; padding: 10px; width: 100%; border-radius: 10px; cursor: pointer; font-weight: bold; }
+.derecha ul { padding-left: 18px; }
 
-.premium {
-  background: #333;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 20px;
-  text-align: center;
-}
-.premium button {
-  background: red;
-  color: white;
-  border: none;
-  padding: 8px;
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 8px;
-}
+/* RADIO DE ABAJO */
+#radio { width: 100%; max-width: 1200px; margin: 15px auto; padding: 15px; background: #1e1e1e; border-radius: 15px; }
+.radio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
+.radio-card { background: #2a2a2a; padding: 12px; border-radius: 12px; min-width: 0; }
+footer { text-align: center; padding: 15px; }
 
-/* Parte del centro */
-.centro {
-  flex: 1;
-  min-width: 0;
-  background: #1f1f1f;
-  padding: 15px;
-  border-radius: 15px;
-}
-.centro input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #333;
-  color: white;
-}
-
-/* Banner */
-.banner {
-  background: linear-gradient(to right, #ff1a1a, orange);
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 15px;
-}
-.banner img {
-  border-radius: 10px;
-}
-
-/* Tabla */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-table, th, td {
-  border: 1px solid #444;
-}
-th, td {
-  padding: 8px;
-  text-align: left;
-  font-size: 14px;
-}
-
-/* Tarjetas de artistas */
-.tarjeta {
-  background: #1e1e1e;
-  border-radius: 15px;
-  padding: 25px;
-  margin: 30px auto;
-  width: 90%;
-  max-width: 600px;
-  color: white;
-}
-.tarjeta img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 15px auto;
-  border-radius: 15px;
-}
-.tarjeta h4 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-.tarjeta p {
-  text-align: left;
-  line-height: 1.8;
-  font-size: 15px;
-  color: #e0e0e0;
-}
-
-#discos {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-#discos img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Audios y videos */
-audio, video {
-  width: 100%;
-  margin-bottom: 10px;
-  border-radius: 8px;
-}
-
-/* Parte derecha - RADIO NOSTALGIA SIEMPRE A LA DERECHA */
-.derecha {
-  width: 260px;
-  flex-shrink: 0;
-  background: #1c1c1c;
-  padding: 15px;
-  border-radius: 15px;
-  position: sticky;
-  top: 0;
-}
-.derecha img {
-  width: 100%;
-  border-radius: 10px;
-}
-.derecha button {
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  border-radius: 8px;
-  margin: 10px 0;
-  cursor: pointer;
-}
-
-/* Pie de pagina */
-footer {
-  text-align: center;
-  padding: 10px;
-  background: black;
-  color: #aaa;
-}
-
-/* MENU LATERAL - CORREGIDO */
-#menu-lateral {
-  position: static !important;
-  left: auto !important;
-  top: auto !important;
-  height: auto !important;
-  width: 200px !important;
-  background: #1c1c1c !important;
-  z-index: 999;
-  transform: none !important;
-  transition: left 0.3s ease;
-}
-
-#radio h2 {
-  color: white;
-  font-size: 28px;
-}
-#radio p {
-  color: #aaa;
-}
-.radio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-.radio-card {
-  background: #1e1e3a;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  color: white;
-}
-.radio-card button {
-  background: #FF4D00;
-  border: none;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-/* BOTON DE LAS 3 LINEAS */
-#btn-menu {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 10001;
-  font-size: 26px;
-  background: #ff8c00;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  display: none;
-}
-#fondo-oscuro {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 9998;
-}
-#fondo-oscuro.mostrar {
-  display: block;
-}
+/* BOTON MENU */
+#btn-menu { position: fixed; top: 10px; left: 10px; z-index: 10000; font-size: 24px; background: #ff8c00; color: white; border: none; padding: 8px 14px; border-radius: 10px; cursor: pointer; display: none; }
 
 /* CELULAR */
-@media (max-width: 900px) {
-  .fondo {
-    padding: 10px;
-  }
-  .caja {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 8px;
-    padding: 8px;
-  }
-  .centro {
-    padding-top: 55px;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-  .derecha {
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    padding: 8px;
-    font-size: 12px;
-  }
-  #radio {
-    margin: 10px 0;
-    padding: 15px;
-  }
-
-  #btn-menu {
-    display: block !important;
-  }
-
-  #menu-lateral {
-    position: fixed !important;
-    left: -110% !important;
-    top: 0 !important;
-    height: 100% !important;
-    width: 82% !important;
-    max-width: 300px !important;
-    background: #12122b !important;
-    z-index: 9999 !important;
-    transform: none !important;
-    overflow-y: auto !important;
-    padding-top: 60px !important;
-    border-radius: 0 !important;
-  }
-  #menu-lateral.abierto {
-    left: 0 !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .tarjeta {
-    width: 100%;
-    margin: 15px 0;
-    padding: 15px;
-  }
-  .tarjeta img {
-    width: 100%;
-    height: auto;
-  }
-  #discos img {
-    width: 48%;
-    height: auto;
-  }
-  .banner {
-    padding: 12px;
-  }
-  .derecha {
-    width: 130px;
-    min-width: 130px;
-    max-width: 130px;
-  }
+@media (max-width: 768px) {
+  #btn-menu { display: block; }
+  .fondo { padding: 0; }
+  .caja { max-width: 100%; border-radius: 0; }
+  .menu { position: fixed; left: -100%; top: 0; height: 100%; width: 82%; max-width: 300px; z-index: 9999; transition: 0.3s; overflow-y: auto; padding-top: 60px; }
+  .menu.abierto { left: 0; }
+  .centro { padding-top: 55px; padding-left: 8px; padding-right: 8px; }
+  .derecha { width: 150px; min-width: 150px; max-width: 150px; padding: 8px; font-size: 12px; }
+  .derecha img { width: 100%; max-width: 130px; }
+  .radio-grid { grid-template-columns: 1fr; }
+  #radio { border-radius: 0; }
 }
