@@ -220,9 +220,6 @@ footer {
 }
 
 #menu-lateral:hover {
-#menu-lateral.abierto {
-  transform: translateX(0);
-#radio {
   padding: 30px;
   background: #12122b;
   border-radius: 15px;
